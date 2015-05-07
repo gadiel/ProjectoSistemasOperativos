@@ -1,0 +1,37 @@
+int main()
+{
+	int i =0;
+	while(i<24)
+	{
+		int j =0;
+		while(j<80)
+		{
+			int dir = (80*i+j)*2;
+			
+			putInMemory(0xB000, 0x8000+dir, 32);
+			j++;
+		}
+		i++;
+	}
+
+	i=0;
+	while(i<16)
+	{
+		char * string = "HELLO WORLD";
+		
+		int j =0;
+		while(j<12)
+		{
+			int dir = (80*i+j)*2;
+			
+			putInMemory(0xB000, 0x8000+dir, string[j]);
+			putInMemory(0xB000, 0x8000+dir+1, i);
+			j++;
+		}
+
+
+		i++;
+	}
+
+	while(1);
+}
